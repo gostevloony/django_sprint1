@@ -3,29 +3,9 @@
   Лента записей
 {% endblock %}
 {% block content %}
-  <main>
-    <div class="container py-5">
-      <h1>Лента записей</h1>                        
-      {% for posts in posts_list reversed %}
-        <hr>
-        <article>
-          <ul>
-            <li>
-              Место: {{ posts.location }}
-            </li>
-            <li>
-              Дата: {{ posts.date }}
-            </li>
-            <li>
-              Категория: <a href="{% url 'blog:category_posts' posts.category %}">{{ posts.category }}</a>
-            </li>
-          </ul>          
-          <p>
-            {{ posts.text|truncatewords:10 }}
-          </p>
-          <a href="{% url 'blog:post_detail' posts.id %}">Читать полный текст</a>
-        </article>
-      {% endfor %}  
-    </div>
-  </main>
+  <h1>Лента записей</h1>                        
+  {% for post in posts_list reversed %}
+    <hr>
+    {% include "includes/post_text.html" %}
+  {% endfor %} 
 {% endblock %}
